@@ -2,6 +2,7 @@ var p = document.querySelector("#p");
 function reqListener() {
   //console.log(this.responseText);
   var data = JSON.parse(this.responseText);
+  console.log(data);
 
   //p.innerHTML=data["data"][0]["Name"];
   //parents div
@@ -54,7 +55,7 @@ function reqListener() {
 
     //add to cart
     const AddButton = document.createElement('button');
-    AddButton.classList = "btn btn-primary mb-2";
+    AddButton.classList = "btn btn-primary mb-2 shop-item-button";
     AddButton.id = `AddCart${i}`;
     AddButton.innerText = "Add To Cart"
     document.getElementById(`test${i}`).appendChild(AddButton)

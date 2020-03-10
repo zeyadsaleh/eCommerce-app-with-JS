@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/styles/style.css">
+    <link rel="stylesheet" href="assets/styles/cartstyle.css">
+    <link rel="stylesheet" href="./assets/other/bootstrap.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+<body>
+
+    <div class="container-fluid fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+          <a class="navbar-brand" href="#">ECommerce Website</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link text-dark " href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="about.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="contact.html">Contact Us</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 text-white">
+              <label class="text-white mr-2">Search</label>
+              <input class="form-control mr-sl-2 bg-secondary  text-white" type="search" placeholder="Search.."
+                aria-label="Search">
+            </form>
+          </div>
+        </nav>
+    </div>
+
+    <section class="container content-section">
+        <h1 class="section-header">CART</h1>
+        <div class="cart-row">
+            <span class="cart-item cart-header cart-column">ITEM</span>
+            <span class="cart-price cart-header cart-column">PRICE</span>
+            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+        </div>
+        <div class="cart-items">
+        </div>
+    </section>
+
+    <div class="dropdown" id="cartBox">
+        <a class="nav-link text-dark " href="cart.html">    
+        <b><button id="cart" class="float dropbtn">
+            <i class="fas fa-cart-plus"></i>
+            Cart(<span id="count">0</span>)
+        </button></b>
+        </a>
+    </div>
+
+    <script src="./assets/other/jquery-min.js"></script>
+    <script src="./assets/other/popper.min.js"></script>
+    <script src="./assets/other/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+    <script src="assets/scripts/load.js" type="text/javascript"></script>
+    <script src="assets/scripts/list.js" type="text/javascript"></script>
+</body>
+</html>

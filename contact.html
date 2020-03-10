@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="assets/styles/bootstrap.min.css">
+    <link href="assets/styles/about_contact.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--Navbar-->
+    <div class="container-fluid fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <a class="navbar-brand" href="#">ECommerce Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white " href="index.html">Home <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-dark" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 text-white">
+                    <label class="text-white mr-2">Search</label>
+                    <input class="form-control mr-sl-2 bg-secondary  text-white" type="search" placeholder="Search.."
+                        aria-label="Search">
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!--End Navbar-->
+    <div class="container contact-form">
+        <div class="contact-image">
+            <img src="assets/img/rocket.png" alt="rocket_contact" />
+        </div>
+        <form method="post" id="submit_form">
+            <h3>Contact Us</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="nameInput" class="form-control" placeholder="Your Name *" value="" /> 
+                        <div class="nameWarning text-danger text-center"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="emailInput" class="form-control" placeholder="Your Email *" value="" />
+                        <div class="emailWarning text-danger text-center"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subjectInput" class="form-control" placeholder="Subject" value="" />
+                    </div>
+                    <div class="form-group text-center">
+                        <input type="submit" name="btnSubmit" class="btnContact" value="Send Message" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea name="msgInput" class="form-control" placeholder="Your Message"
+                            style="width: 100%; height: 150px;"></textarea>
+                    </div>
+                    <div class="submitWarning text-danger"></div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
+        <div class="row py-5 px-5 justify-content-center">
+          <div class="col col-md-3">
+            <h5 class="mb-3 font-weight-bold">About Website</h5>
+            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+          </div>
+          <div class="col col-md-3">
+            <h5 class="mb-3 font-weight-bold">Contact Info</h5>
+            <p class="text-white">Adress:<br>34 Street name, cityn name here, United State</br></p>
+            <p class="py-1 text-white">Telephone: <br>+124249290</br></p>
+            <p class="text-white"> Email:<br>info@yourdomain.com</br></p>
+          </div>
+          <div class="col col-md-3">
+            <h5 class="mb-3 font-weight-bold">Qiuck Links</h5>
+            <a class="text-white" href="about.html">About Us</a><br></br>
+            <a class="text-white" href="contact.html">Contact Us</a><br></br>
+            <a class="text-white" href="#">History</a>
+          </div>
+          <div class="footer-copyright text-center mb-4 mt-5 text-white" style="font-size: 12px;">Copyright ©2019 All Rights
+            Reserved | This Website is made with love by
+            <a href="#">OS_40</a>
+          </div>
+        </div>
+      </footer>
+
+
+    <script src="assets/scripts//popper.min.js"></script>
+    <script src="assets/scripts//jquery-min.js"></script>
+    <script src="assets/scripts//bootstrap.min.js"></script>
+    <script src="assets/scripts//script.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>
