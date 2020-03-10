@@ -1,7 +1,12 @@
 //prodcut details
-async function getProduct(productId){
+(async function getProduct() {
+    //getting the productId from the local storage
+    const urlParams = new URLSearchParams(window.location.search);
+    var productId = urlParams.get('id');
+    console.log(productId);
+    
     //get the product
-    let product = await fetch(`https://afternoon-falls-30227.herokuapp.com/api/v1/products/${productId}`);  
+    let product = await fetch(`https://afternoon-falls-30227.herokuapp.com/api/v1/products/${productId}`);
     //parse the json  
     let jsonProduct = await product.json();
     //get all the data 
@@ -13,13 +18,7 @@ async function getProduct(productId){
     document.getElementById("Description").innerHTML = jsonProduct.Description;
     document.getElementById("Status").innerHTML = `${jsonProduct.Status} <span class="text-secondary">In stock</span>`;
     document.getElementById("Price").innerHTML = `${jsonProduct.Price} <span class="font-weight-bold text-uppercase" >${jsonProduct.CurrencyCode}</span>`;
-
-    //console.log(jsonProduct);
-    
-}
-getProduct('HT-1003');
-
-
-
-
+    localStorage.removeItem('pId');
+    //console.log(jsonProduct);   
+})();
 
