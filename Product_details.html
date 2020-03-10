@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +8,92 @@
     <link rel="stylesheet" href="./assets/other/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/27fcb9f8e7.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+     <!--Navbar-->
+     <div class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <a class="navbar-brand" href="#">ECommerce Website</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white " href="index.html">Home <span
+                                class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link text-dark" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 text-white">
+                    <label class="text-white mr-2">Search</label>
+                    <input class="form-control mr-sl-2 bg-secondary  text-white" type="search" placeholder="Search.."
+                        aria-label="Search">
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!--End Navbar-->
     <section class="container justify-content-around mt-5" style="padding: 75px;">
         <div class="row">
-          <div class="col col-md-5 mr-md-5 " id="ProductPicUrl">
-              
-          </div>
-          <div class="col col-md-3 text-md-left text-center">
-              <p class="text-warning font-weight-light text-uppercase mt-2" id="Category"></p>
-              <p class="text-dark font-weight-light" id="Name"></p>
-              <p class="text-secondary" id="Description"></p>
-              <button type="button " class="btn btn-outline-primary mt-4"> <a href="#">BACK</a></button>
-          </div>
-          <div class="col col-md-3 mr-md-2 border border-secondary rounded">
-            <p class="font-weight-light mt-2 text-success" id="Status"></p> 
-            <hr>
-            <p class="font-weight-bold" id="Price"> </p> 
-    
-            <p class="text-dark font-weight-light mt-5">Quiantity:</p>
-            <form class="form-inline my-2 my-lg-0 text-white">
-                <input class="rounded" type="number" placeholder="1" value="1">
-                <button type="submit " class="btn btn-outline-primary mt-4 ml-5">ADD TO CARD</button>
-              </form>
-        </div>
-    </section>
+            <div class="col col-md-5 mr-md-5 " id="ProductPicUrl">
 
+            </div>
+            <div class="col col-md-3 text-md-left text-center">
+                <p class="text-warning font-weight-light text-uppercase mt-2" id="Category"></p>
+                <p class="text-dark font-weight-light" id="Name"></p>
+                <p class="text-secondary" id="Description"></p>
+                <button type="button " class="btn btn-outline-primary mt-4"> <a href="index.html">BACK</a></button>
+            </div>
+            <div class="col col-md-3 mr-md-2 border border-secondary rounded">
+                <p class="font-weight-light mt-2 text-success" id="Status"></p>
+                <hr>
+                <p class="font-weight-bold" id="Price"> </p>
+
+                <p class="text-dark font-weight-light mt-5">Quiantity:</p>
+                <form class="form-inline my-2 my-lg-0 text-white">
+                    <input class="rounded" type="number" placeholder="1" value="1">
+                    <button type="submit " class="btn btn-outline-primary mt-4 ml-5">ADD TO CARD</button>
+                </form>
+            </div>
+    </section>
+    <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
+        <div class="row py-5 px-5 justify-content-center">
+            <div class="col col-md-3">
+                <h5 class="mb-3 font-weight-bold">About Website</h5>
+                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                </p>
+            </div>
+            <div class="col col-md-3">
+                <h5 class="mb-3 font-weight-bold">Contact Info</h5>
+                <p class="text-white">Adress:<br>34 Street name, cityn name here, United State</br></p>
+                <p class="py-1 text-white">Telephone: <br>+124249290</br></p>
+                <p class="text-white"> Email:<br>info@yourdomain.com</br></p>
+            </div>
+            <div class="col col-md-3">
+                <h5 class="mb-3 font-weight-bold">Qiuck Links</h5>
+                <a class="text-white" href="about.html">About Us</a><br></br>
+                <a class="text-white" href="contact.html">Contact Us</a><br></br>
+                <a class="text-white" href="#">History</a>
+            </div>
+            <div class="footer-copyright text-center mb-4 mt-5 text-white" style="font-size: 12px;">Copyright ©2019 All
+                Rights
+                Reserved | This Website is made with love by
+                <a href="#">OS_40</a>
+            </div>
+        </div>
+    </footer>
     <script src="./assets/scripts/product.js"></script>
     <script src="./assets/other/bootstrap.min.js"></script>
     <script src="./assets/other/popper.min.js"></script>
     <script src="./assets/other/jquery-min.js"></script>
 </body>
+
 </html>
