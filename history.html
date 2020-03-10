@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/other/bootstrap.min.css">
-    <script src="https://kit.fontawesome.com/27fcb9f8e7.js" crossorigin="anonymous"></script>
+
+    <title>History</title>
 </head>
 
 <body>
-     <!--Navbar-->
-     <div class="fixed-top">
+    <!--Navbar-->
+    <div class="fixed-top">
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <a class="navbar-brand" href="#">ECommerce Website</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,11 +29,11 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="about.html">About Us</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link text-white" href="contact.html">Contact Us</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="history.html">History</a>
+                        <a class="nav-link text-dark" href="history.html">History</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 text-white">
@@ -44,29 +45,73 @@
         </nav>
     </div>
     <!--End Navbar-->
-    <section class="container justify-content-around mt-5" style="padding: 75px;">
-        <div class="row">
-            <div class="col col-md-5 mr-md-5 " id="ProductPicUrl">
+    
 
-            </div>
-            <div class="col col-md-3 text-md-left text-center">
-                <p class="text-warning font-weight-light text-uppercase mt-2" id="Category"></p>
-                <p class="text-dark font-weight-light" id="Name"></p>
-                <p class="text-secondary" id="Description"></p>
-                <button type="button " class="btn btn-outline-primary mt-4"> <a href="index.html">BACK</a></button>
-            </div>
-            <div class="col col-md-3 mr-md-2 border border-secondary rounded">
-                <p class="font-weight-light mt-2 text-success" id="Status"></p>
-                <hr>
-                <p class="font-weight-bold" id="Price"> </p>
+    <section class="container"> 
+        <div class="row justify-content-center text-center" >
+          <div class="col-md-6 col-sm-9 mt-5">
+            <H1 class="mt-5 mb-3 text-dark font-weight-bold" >
+              HISTORY
+            </H1>
+          </div>
+        </div>  
+      </section>
 
-                <p class="text-dark font-weight-light mt-5">Quiantity:</p>
-                <form class="form-inline my-2 my-lg-0 text-white">
-                    <input class="rounded" type="number" placeholder="1" value="1">
-                    <button type="submit " class="btn btn-outline-primary mt-4 ml-5">ADD TO CARD</button>
-                </form>
+    <section class="container-fluid"> 
+        <div class="row justify-content-center text-center" >
+          <div class="col-md-12 col-sm-9 mb-4">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ORDER</th>
+                    <th scope="col">DATE</th>
+                    <th scope="col">STATUS</th>
+                    <th scope="col">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody id = "tbody">
+                </tbody>
+              </table>
+  
+          </div>
+        </div>  
+      </section>
+    
+      <section class="container justify-content-around mt-5" style="padding: 75px;">
+        <form id="addForm">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <label for="book-title" class="required">
+                      price:
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" id="price"  />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                
+                      number:
+                    </label>
+                  </td>
+                  <td>
+                    <input type="number" id="number"  />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      
+            <div class="button-pane">
+              <input type="button" id="addButton" value="Pay" />
+              <input type="button" id="show" value="Show History"/>
+            </div>
+          </form>
             </div>
     </section>
+
     <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
         <div class="row py-5 px-5 justify-content-center">
             <div class="col col-md-3">
@@ -93,7 +138,8 @@
             </div>
         </div>
     </footer>
-    <script src="./assets/scripts/product.js"></script>
+  
+    <script src="./assets/scripts/history.js"></script>
     <script src="./assets/other/bootstrap.min.js"></script>
     <script src="./assets/other/popper.min.js"></script>
     <script src="./assets/other/jquery-min.js"></script>
