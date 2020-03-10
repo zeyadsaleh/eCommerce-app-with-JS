@@ -1,7 +1,9 @@
 body{
     background-color:tomato;
-    padding: 10%;
+}
 
+.aboutBody {
+    padding: 15rem;
 }
 
 .danger {
