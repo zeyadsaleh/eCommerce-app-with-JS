@@ -8,12 +8,18 @@ function addItemToCart(id, title, price, imageSrc) {
     var cartRow = document.createElement('div');
     cartRow.classList.add('cart-row');
     var cartItems = document.getElementsByClassName('cart-items')[0];
+    var cartItem = document.getElementsByClassName('cart-item');
+    console.log(cartItemId);
+
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
 
     total(price);
 
     for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
+
+        var cartItemId = document.querySelector(`#${id}`);
+        if (cartItemId){
+        if (id == cartItemId.id && cartItemId) {
             IDQ = document.querySelector(`#Q${id}`);
             IDP = document.querySelector(`#P${id}`);
             cout++;
@@ -22,11 +28,14 @@ function addItemToCart(id, title, price, imageSrc) {
             return
         }
     }
-
+    }
+    // console.log(cartItemId.id);
     var cartRowContents = `
-        <div class="cart-item cart-column">
+        <div class="cart-item cart-column" id="${id}">
+        <a href= "Product_details.html?id=${id}">
             <img class="cart-item-image" src=${imageSrc} width="100" height="100">
             <span class="cart-item-title">${title}</span>
+        </a>
         </div>
         <span class="cart-price cart-column" id="P${id}">${price}</span>
         <div class="cart-quantity cart-column">
@@ -38,7 +47,6 @@ function addItemToCart(id, title, price, imageSrc) {
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
 }
-
 
 var t=setTimeout("tot()",2000);
 

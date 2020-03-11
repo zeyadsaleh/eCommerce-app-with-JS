@@ -60,12 +60,19 @@
                 <p class="font-weight-bold" id="Price"> </p>
 
                 <p class="text-dark font-weight-light mt-5">Quiantity:</p>
-                <form class="form-inline my-2 my-lg-0 text-white">
                     <input class="rounded" type="number" placeholder="1" value="1">
-                    <button type="submit " class="btn btn-outline-primary mt-4 ml-5">ADD TO CARD</button>
-                </form>
+                    <button type="submit " class="btn btn-outline-primary shop-item-button mt-4 ml-5">ADD TO CARD</button>
             </div>
     </section>
+
+    <div class="dropdown" id="cartBox">
+        <a class="nav-link text-dark " href="cart.html">    
+        <b><button id="cart" class="float dropbtn">
+            <i class="fas fa-cart-plus"></i>
+            Cart(<span id="count">0</span>)
+        </button></b>
+        </a>
+    </div>
     <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
         <div class="row py-5 px-5 justify-content-center">
             <div class="col col-md-3">
@@ -92,9 +99,7 @@
             </div>
         </div>
     </footer>
-    <script src="./assets/scripts/product.js"></script>
-    <script src="./assets/other/bootstrap.min.js"></script>
-    <script src="./assets/other/popper.min.js"></script>
+
     <script src="./assets/other/jquery-min.js"></script>
     <script src="./assets/other/popper.min.js"></script>
     <script src="./assets/other/bootstrap.min.js"></script>

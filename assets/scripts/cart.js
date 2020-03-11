@@ -6,7 +6,7 @@ let counter = document.querySelector('#count');
 // let cartBox = document.querySelector('#myDropdown');
 // let delBtn = document.createElement("button");
 let count = 0;
-let db,title,productId,price,imageUrl,index;
+let db,title,prodId,price,imageUrl,index;
 
 if ('indexedDB' in window) {
     openDB();
@@ -51,13 +51,23 @@ function openDB() {
 // count items of cart
 function countItems(ths){
 
+  if(String(window.location.href).includes("index.html")){
+
     index = (Number((ths.path[0].id).slice(7,8)));
     title = data["data"][index]["Name"];
-    productId = data["data"][index]["ProductId"];
+    prodId = data["data"][index]["ProductId"];
     price = [ data["data"][index]["Price"] , data["data"][index]["CurrencyCode"]];
     imageUrl = data["data"][index]["ProductPicUrl"];
 
-    let check = addToDB(title, imageUrl, productId, price[0]);
+  }else if (String(window.location.href).includes("Product_details.html")){
+
+    title = document.querySelector('#Name').textContent;
+    prodId = productId;
+    price = document.querySelector('#Price').textContent;
+    imageUrl = document.querySelector('.image').src;
+  }
+
+    let check = addToDB(title, imageUrl, prodId, price[0]);
 
     if(check){
     count ++;
@@ -69,15 +79,15 @@ function countItems(ths){
 
 
 // add item to indexDb
-function addToDB(title, imageUrl, productId, price){
+function addToDB(title, imageUrl, prodId, price){
   if (db instanceof IDBDatabase) {
     const tx = db.transaction(STORE_NAME, 'readwrite');
     const souqStore = tx.objectStore(STORE_NAME);
     souqStore.add({
-        itemId: productId, 
+        itemId: prodId, 
         itemName: title,
-        itemImage: imageUrl,
         price: price,
+        itemImage: imageUrl,
     });
   return true;
 }else{
