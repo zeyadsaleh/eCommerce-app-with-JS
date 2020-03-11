@@ -1,11 +1,17 @@
 let IDQ,IDP;
-let cout = 1;
+let totalItems = 0;
+let totalPrice = 0;
+let cout = 0;
 
 function addItemToCart(id, title, price, imageSrc) {
-    var cartRow = document.createElement('div')
-    cartRow.classList.add('cart-row')
-    var cartItems = document.getElementsByClassName('cart-items')[0]
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+    cout = 1;
+    var cartRow = document.createElement('div');
+    cartRow.classList.add('cart-row');
+    var cartItems = document.getElementsByClassName('cart-items')[0];
+    var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
+
+    total(price);
+
     for (var i = 0; i < cartItemNames.length; i++) {
         if (cartItemNames[i].innerText == title) {
             IDQ = document.querySelector(`#Q${id}`);
@@ -16,6 +22,7 @@ function addItemToCart(id, title, price, imageSrc) {
             return
         }
     }
+
     var cartRowContents = `
         <div class="cart-item cart-column">
             <img class="cart-item-image" src=${imageSrc} width="100" height="100">
@@ -28,10 +35,40 @@ function addItemToCart(id, title, price, imageSrc) {
         </div>`
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
-
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
-
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
+}
+
+
+var t=setTimeout("tot()",2000);
+
+function tot(){
+var cartRow = document.createElement('div');
+cartRow.classList.add('cart-row');
+var cartItems = document.getElementsByClassName('cart-items')[0];
+
+var cartRowContents = 
+`<div class="cart-item cart-column">
+    <span class="cart-item-title">Number of Items: ${totalItems}</span>
+</div>
+<span class="cart-price cart-column">${totalPrice}</span>
+<div class="cart-quantity cart-column">
+<button class="btn btn-primary" type="button">Buy Items</button>
+</div>`
+
+cartRow.innerHTML = cartRowContents;
+cartItems.append(cartRow);
+if( +localStorage.getItem("totalPrice") != totalPrice && +localStorage.getItem("totalItems") != totalPrice){
+cartRow.getElementsByClassName('btn-primary')[0].addEventListener('click', buyItems);
+}else{
+    cartRow.getElementsByClassName('btn-primary')[0].setAttribute("disabled", true);
+}
+}
+// console.log(localStorage.getItem("totalPrice"));
+
+function total(price){
+    totalPrice += price;
+    totalItems ++;
 }
 
 function quantityChanged(event) {
@@ -44,4 +81,10 @@ function quantityChanged(event) {
 function removeCartItem(event) {
     var buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();
+}
+
+function buyItems(){
+    localStorage.clear();
+    localStorage.setItem("totalPrice", totalPrice);
+    localStorage.setItem("totalItems", totalItems);
 }
