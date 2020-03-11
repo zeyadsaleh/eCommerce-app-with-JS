@@ -35,7 +35,7 @@ function reqListener() {
     Title.classList = "text-center";
     Title.id = `titleLink${i}`;
     Title.title = data["data"][i]["Name"];
-    Title.href = "#";
+    Title.href = `Product_details.html?id=${data["data"][i]["ProductId"]}`;
     document.getElementById(`test${i}`).appendChild(Title)
     //add text to tilte
     const TextTitle = document.createElement('p');

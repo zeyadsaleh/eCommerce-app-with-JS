@@ -16,7 +16,7 @@ let inputStatus;
             console.log("wrong name");
             inputStatus = false;
         }
-        else{
+        else {
             nameWarning.innerHTML = "";
             inputStatus = true;
         }
@@ -27,7 +27,7 @@ let inputStatus;
             document.querySelector(".emailWarning").innerHTML = "invalid email";
             console.log("email is not valid");
             inputStatus = false;
-        }else{
+        } else {
             document.querySelector(".emailWarning").innerHTML = "";
             inputStatus = true;
         }
