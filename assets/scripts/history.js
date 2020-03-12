@@ -1,5 +1,5 @@
 const DB_NAME = 'History';
-const DB_V = 23;
+const DB_V = 26;
 const BOOKS_STORE_NAME = 'history';
 const addBtn = document.querySelector('#addButton');
 const showBtn = document.querySelector('#show');
@@ -13,7 +13,7 @@ if ('indexedDB' in window) {
 }
 
 function openDB() {
-    const dbReq = indexedDB.open(DB_NAME, DB_V);
+    const dbReq = indexedDB.open(DB_NAME);
 
     dbReq.onerror = (ev) => {
         console.error('onerror', ev.target.errorCode);
@@ -32,12 +32,11 @@ function openDB() {
     }
     dbReq.onsuccess = (ev) => {
         console.log('onsuccess');
+        db = ev.target.result;
         if (db instanceof IDBDatabase) {
             const tx = db.transaction(BOOKS_STORE_NAME, 'readwrite');
             const historyDb = tx.objectStore(BOOKS_STORE_NAME);
             historyDb.getAll().onsuccess = (ev) => {
-                //console.log(ev.target.result);
-                //console.log(ev.target.result[0].title);
                 for (let i in ev.target.result) {
                     var order = document.createElement("td");
                     order.innerHTML = `#${ev.target.result[i].id}`;
