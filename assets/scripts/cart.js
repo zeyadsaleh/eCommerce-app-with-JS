@@ -34,6 +34,7 @@ function openDB() {
     };
 
     dbReq.onsuccess = (ev) => {
+        count = 0;
         console.log('onsucces');
         db = ev.target.result;
         const tx = db.transaction(STORE_NAME, 'readwrite');
@@ -59,6 +60,7 @@ function countItems(ths){
     prodId = data["data"][index]["ProductId"];
     price = [ data["data"][index]["Price"] , data["data"][index]["CurrencyCode"]];
     imageUrl = data["data"][index]["ProductPicUrl"];
+    
   }else if (String(window.location.href).includes("Product_details.html")){
 
     title = document.querySelector('#Name').textContent;
