@@ -36,6 +36,10 @@ function calItems(price,check = true){
 
 function quantityChanged(event) {
     var input = event.target;
+    if (isNaN(input.value) || input.value <= 0) {
+        input.value = 1;
+        return 0;
+    }
     var totalBar = document.getElementById('total');
     let idn = (input.id).replace("Q","");
     if (db instanceof IDBDatabase) {
@@ -44,26 +48,25 @@ function quantityChanged(event) {
         res = booksStore.getAll().onsuccess = function(event) {
             for (let ele of (event.target.result)){
                   if ( ele.itemId == idn){
+                    let idx = Math.abs(+input.value-cout[idn]);
+                    console.log(idx);
                     if ( cout[idn] < +input.value){
+                            calItems(ele.price, true);
                             addToDB(ele.itemName, ele.itemImage, ele.itemId, ele.price);
-                            calItems(ele.price, true);}
-                        else{
+                            cout[idn] ++;
+                        }else{
                             calItems(ele.price, false);
-                            booksStore.delete(parseInt(ele.id));}
-                            cout[idn] = +input.value;
+                            booksStore.delete(parseInt(ele.id));
+                            cout[idn] --;}
                         IDP = document.querySelector(`#P${idn}`);
                         IDP.textContent = ele.price*+input.value;
-                        break;
+                        if(idx == 1) break;
                     }
             }
         }
     }
     totalBar.remove();
     t = setTimeout("totalTemplate()",300);
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-
 }
 
 function removeCartItem(event) {
