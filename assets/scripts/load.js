@@ -1,4 +1,4 @@
-var t=setTimeout("newfunction()",500);
+var t=setTimeout("newfunction()",1000);
       
 function newfunction(){
   var mysrc=document.createElement('script');

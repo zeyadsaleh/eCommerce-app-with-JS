@@ -11,6 +11,7 @@ let db,title,prodId,price,imageUrl,index;
 if ('indexedDB' in window) {
     openDB();
     if(String(window.location.href).includes("index.html")){
+      // console.log("ok");
     var data = JSON.parse(oReq.responseText);
     }
 }
@@ -58,16 +59,16 @@ function countItems(ths){
     prodId = data["data"][index]["ProductId"];
     price = [ data["data"][index]["Price"] , data["data"][index]["CurrencyCode"]];
     imageUrl = data["data"][index]["ProductPicUrl"];
-
   }else if (String(window.location.href).includes("Product_details.html")){
 
     title = document.querySelector('#Name').textContent;
     prodId = productId;
     price = document.querySelector('#Price').textContent;
+    price = price.split(" ");
     imageUrl = document.querySelector('.image').src;
   }
 
-    let check = addToDB(title, imageUrl, prodId, price[0]);
+    let check = addToDB(title, imageUrl, prodId, +price[0]);
 
     if(check){
     count ++;
