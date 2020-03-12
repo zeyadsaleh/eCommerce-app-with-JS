@@ -62,6 +62,12 @@ function reqListener() {
    productGrid__description.classList="product-grid__description";
    productGrid__description.innerText=data["data"][i]["Description"];
    document.getElementById(`Inextend${i}`).appendChild(productGrid__description);
+    //add button
+    const add_button=document.createElement('button');
+    add_button.classList="product-grid__btn product-grid__add-to-cart";
+    add_button.innerText="Add To Cart";
+    add_button.id =`AddCart${i}`;
+    document.getElementById(`Inextend${i}`).appendChild(add_button);
   }
 
   //pagination
