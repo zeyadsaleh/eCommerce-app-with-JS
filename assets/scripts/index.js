@@ -6,58 +6,61 @@ function reqListener() {
   //p.innerHTML=data["data"][0]["Name"];
   //parents div
   for (i = 0; i < data["data"].length; i++) {
-    const parentsDiv = document.createElement('div');
-    parentsDiv.id = `test${i}`;
-    parentsDiv.classList = "col-lg-4 col-md-4 col-sm-12 col-xs-12  border mt-2 ";
-    document.getElementById("data").appendChild(parentsDiv);
-    //chield div
-    var CurrentDev = document.createElement('div');
-    CurrentDev.id = `pic${i}`;
-    CurrentDev.classList = "row";
-    document.getElementById(`test${i}`).appendChild(CurrentDev);
-    //div for image
-    const ImgDiv = document.createElement('div');
-    ImgDiv.classList = "img-hover-zoom img-hover-zoom--xyz";
-    ImgDiv.id = `ImgDiv${i}`
-    document.getElementById(`pic${i}`).appendChild(ImgDiv);
-    //adding anchor tag
-    var a = document.createElement('a');
-    a.href = `Product_details.html?id=${data["data"][i]["ProductId"]}`;
-    a.id = `a${i}`;
-    document.getElementById(`ImgDiv${i}`).appendChild(a);
-    var img = document.createElement('img');
-    img.src = data["data"][i]["ProductPicUrl"];
-    img.classList = "img-fluid border";
-    document.getElementById(`a${i}`).appendChild(img);
-    // fill data
-    const Title = document.createElement('a');
-    Title.classList = "text-center";
-    Title.id = `titleLink${i}`;
-    Title.title = data["data"][i]["Name"];
-    Title.href = `Product_details.html?id=${data["data"][i]["ProductId"]}`;
-    document.getElementById(`test${i}`).appendChild(Title)
-    //add text to tilte
-    const TextTitle = document.createElement('p');
-    TextTitle.innerText = data["data"][i]["Name"];
-    TextTitle.classList = "text-center";
-    document.getElementById(`titleLink${i}`).appendChild(TextTitle);
-    //id of prodeuct
-    const ProductId = document.createElement('p');
-    ProductId.innerText = "ProductId :" + data["data"][i]["ProductId"];
-    ProductId.classList = "text-left"
-    document.getElementById(`test${i}`).appendChild(ProductId);
-    //price of product
-    const PriceProduct = document.createElement('p');
-    PriceProduct.innerText = "Price :" + data["data"][i]["Price"] + data["data"][i]["CurrencyCode"];
-    PriceProduct.classList = "text-left";
-    document.getElementById(`test${i}`).appendChild(PriceProduct);
-
-    //add to cart
-    const AddButton = document.createElement('button');
-    AddButton.classList = "btn btn-primary mb-2";
-    AddButton.id = `AddCart${i}`;
-    AddButton.innerText = "Add To Cart"
-    document.getElementById(`test${i}`).appendChild(AddButton)
+   //product-grid__wrapper
+   const productGrid=document.createElement('div');
+   productGrid.classList="product-grid__product-wrapper";
+   productGrid.id=`productGrid${i}`;
+   document.getElementById("product-grid").appendChild(productGrid);
+   //product-grid__product
+   const productGrid__product=document.createElement('div');
+   productGrid__product.classList="product-grid__product wow bounceInUp";
+   productGrid__product.id=`productgrid__product${i}`;
+   document.getElementById(`productGrid${i}`).appendChild(productGrid__product);
+   //product-grid__img-wrapper
+   const productGrid__img=document.createElement('div');
+   productGrid__img.classList="product-grid__img-wrapper";
+   productGrid__img.id=`productImg${i}`;
+   document.getElementById(`productgrid__product${i}`).appendChild(productGrid__img);
+   //link ->`Product_details.html?id=${data["data"][i]["ProductId"]}`
+   const productLink =document.createElement('a');
+   productLink.id=`link${i}`
+   productLink.href=`Product_details.html?id=${data["data"][i]["ProductId"]}`;
+   document.getElementById(`productImg${i}`).appendChild(productLink)
+   //productImg
+   const productImg=document.createElement('img');
+   productImg.src=data["data"][i]["ProductPicUrl"];
+   productImg.classList="product-grid__img";
+   document.getElementById(`link${i}`).appendChild(productImg);
+   //link
+   const productLink2 =document.createElement('a');
+   productLink2.id=`link2${i}`
+   productLink2.href=`Product_details.html?id=${data["data"][i]["ProductId"]}`;
+   document.getElementById(`productgrid__product${i}`).appendChild(productLink2)
+   //product-grid__title
+   const productTitle=document.createElement('span');
+   productTitle.innerText=data["data"][i]["Name"];
+   productTitle.classList="product-grid__title";
+   document.getElementById(`link2${i}`).appendChild(productTitle);
+   //product-grid__price
+   const productGrid__price=document.createElement('span');
+   productGrid__price.innerText=data["data"][i]["Price"];
+   productGrid__price.classList="product-grid__price";
+   document.getElementById(`productgrid__product${i}`).appendChild(productGrid__price);
+   //product-grid__extend-wrapper
+   const productGrid__extend=document.createElement('div');
+   productGrid__extend.classList="product-grid__extend-wrapper";
+   productGrid__extend.id=`product-extend${i}`;
+   document.getElementById(`productgrid__product${i}`).appendChild(productGrid__extend);
+   //product-grid__extend
+   const productIn__extend=document.createElement('div');
+   productIn__extend.classList="product-grid__extend";
+   productIn__extend.id=`Inextend${i}`;
+   document.getElementById(`product-extend${i}`).append(productIn__extend);
+   //product-grid__description
+   const productGrid__description=document.createElement('p');
+   productGrid__description.classList="product-grid__description";
+   productGrid__description.innerText=data["data"][i]["Description"];
+   document.getElementById(`Inextend${i}`).appendChild(productGrid__description);
   }
 
   //pagination
