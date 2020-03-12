@@ -19,7 +19,7 @@ function reqListener() {
    document.getElementById(`productGrid${i}`).appendChild(productGrid__product);
    //product-grid__img-wrapper
    const productGrid__img=document.createElement('div');
-   productGrid__img.classList="product-grid__img-wrapper";
+     productGrid__img.classList="product-grid__img-wrapper";
    productGrid__img.id=`productImg${i}`;
    document.getElementById(`productgrid__product${i}`).appendChild(productGrid__img);
    //link ->`Product_details.html?id=${data["data"][i]["ProductId"]}`
@@ -106,3 +106,16 @@ function getId(productId) {
   const pId = { id: productId };
   localStorage.setItem('pId', JSON.stringify(pId));
 }
+
+//function for search 
+const formSubmit=document.getElementById("form_search");
+// search cat
+const searchBtn=document.getElementById("searchBtn");
+//event
+formSubmit.addEventListener("submit",(ev)=>{
+  
+  event.preventDefault();
+  console.log(searchBtn.value);
+  // Simulate an HTTP redirect:
+  window.location.href="./search.html?cat="+searchBtn.value;
+})
