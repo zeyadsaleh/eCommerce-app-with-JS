@@ -2,16 +2,16 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="assets/styles/style.css">
-    <link rel="stylesheet" href="assets/styles/cartstyle.css">
-    <link rel="stylesheet" href="./assets/other/bootstrap.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/css/libs/animate.css">
+</head>
 
-  </head>
 <body>
   <!--Navbar-->
   <div class="fixed-top">
@@ -45,73 +45,74 @@
   <!--End Navbar-->
   <!--content of page-->
   <div class="row">
-    <!--sidebar-->
-    <div class="col-md-2 mt-2 wrapper">
-      <nav id="sidebar">
-        <div class="sidebar-header">
-          <h3>El Team El Fagger</h3>
-        </div>
-
-        <ul class="list-unstyled components">
-          <h5>Catagory</h5>
-          <li>
-            <a href="#">About</a>
-          </li>
-          <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+        <!--sidebar-->
+        <div class="col-md-2 mt-2 wrapper ">
+          <nav id="sidebar">
+            <div class="sidebar-header">
+              <h3>El Team El Fagger</h3>
+            </div>
+    
+            <ul class="list-unstyled components">
+              <h5>Catagory</h5>
               <li>
-                <a href="#">Page 1</a>
+                <a href="#">About</a>
               </li>
               <li>
-                <a href="#">Page 2</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li>
+                    <a href="#">Page 1</a>
+                  </li>
+                  <li>
+                    <a href="#">Page 2</a>
+                  </li>
+                  <li>
+                    <a href="#">Page 3</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href="#">Page 3</a>
+                <a href="#">Portfolio</a>
+              </li>
+              <li>
+                <a href="#">Contact</a>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="#">Portfolio</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-
-
-    <!--end sidebar-->
-    <!--content-->
-    <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
-      <!--box 1-->
-      <div class="container">
-        <div class="row" id="data">
-
-
+          </nav>
         </div>
+    
+    
+        <!--end sidebar-->
+        <!--content-->
+        <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+          <!--box 1-->
+          <div class="content">
+            <!-- content here -->
+            <div class="product-grid product-grid--flexbox">
+                <div class="product-grid__wrapper" id="product-grid">
 
+                </div>
+            </div>         
+        </div>
+    
       </div>
+    
+    
+    
+      </div>
+    
+      <!--end content-->
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="pagination" id="pagination">
+    
+        </div>
+      </div>
+    
+    
+      </div>
+
     </div>
 
-  </div>
-
-
-  <!--end content-->
-  <div class="row d-flex justify-content-center mt-2">
-    <div class="pagination" id="pagination">
-
-    </div>
-  </div>
-
-  <div class="dropdown" id="cartBox">
-  <a class="nav-link text-dark " href="cart.html">    
-  <b><button id="cart" class="float dropbtn">
-      <i class="fas fa-cart-plus"></i>
-      Cart(<span id="count">0</span>)
-  </button></b>
-  </a>
   </div>
 
   <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
