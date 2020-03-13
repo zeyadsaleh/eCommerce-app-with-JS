@@ -1,10 +1,10 @@
-let IDQ,IDP;
 let totalItems = 0;
 let totalPrice = 0;
 let cout = [];
 
 function addItemToCart(id, title, price, imageSrc) {
-    calItems(price);
+    let IdQuantity,IdPrice;
+    cartItems(price);
     for (var i = 0; i < counter.textContent ; i++) {
         var cartItemId = document.querySelector(`#${id}`);
         if (cartItemId){
@@ -13,18 +13,18 @@ function addItemToCart(id, title, price, imageSrc) {
             if (cout[String(id)] == undefined){
                 cout[String(id)] = 1;
             }
-            IDQ = document.querySelector(`#Q${id}`);
-            IDP = document.querySelector(`#P${id}`);
+            IdQuantity = document.querySelector(`#Q${id}`);
+            IdPrice = document.querySelector(`#P${id}`);
             cout[String(id)]++;
-            IDP.textContent = cout[String(id)]*price;
-            IDQ.value = cout[String(id)];
+            IdPrice.textContent = cout[String(id)]*price;
+            IdQuantity.value = cout[String(id)];
             return}
         }
     }
     itemsTemplate(id, imageSrc, title, price);
 }
 
-function calItems(price,check = true){
+function cartItems(price,check = true){
     if(check){
     totalPrice += Math.ceil(price);
     totalItems ++;}
@@ -35,6 +35,7 @@ function calItems(price,check = true){
 }
 
 function quantityChanged(event) {
+    localStorage.clear();
     var input = event.target;
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1;
@@ -49,13 +50,12 @@ function quantityChanged(event) {
             for (let ele of (event.target.result)){
                   if ( ele.itemId == idn){
                     let idx = Math.abs(+input.value-cout[idn]);
-                    console.log(idx);
                     if ( cout[idn] < +input.value){
-                            calItems(ele.price, true);
+                            cartItems(ele.price, true);
                             addToDB(ele.itemName, ele.itemImage, ele.itemId, ele.price);
                             cout[idn] ++;
                         }else{
-                            calItems(ele.price, false);
+                            cartItems(ele.price, false);
                             booksStore.delete(parseInt(ele.id));
                             cout[idn] --;}
                         IDP = document.querySelector(`#P${idn}`);
@@ -65,11 +65,11 @@ function quantityChanged(event) {
             }
         }
     }
-    totalBar.remove();
-    t = setTimeout("totalTemplate()",300);
+    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
 }
 
 function removeCartItem(event) {
+    localStorage.clear();
     var buttonClicked = event.target;
     var totalBar = document.getElementById('total');
     let idn = (buttonClicked.id).replace("B","");
@@ -80,32 +80,73 @@ function removeCartItem(event) {
               for (let ele of (event.target.result)){
                   if ( ele.itemId == idn){
                     delete cout[String(ele.itemId)];
-                    calItems(ele.price, false);
+                    cartItems(ele.price, false);
                     booksStore.delete(parseInt(ele.id));}
               }
     }
 }
-    totalBar.remove();
+    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
     buttonClicked.parentElement.parentElement.remove();
-    t = setTimeout("totalTemplate()",300);
+    // refreshTotal(totalItems, totalPrice);
 }
 
-function buyItems(){
+function buyOrder(){
     localStorage.clear();
-    document.getElementsByClassName('buy')[0].setAttribute("disabled", true);
+    localStorage.setItem("proccess", "Buy");     
     localStorage.setItem("totalPrice", totalPrice);
     localStorage.setItem("totalItems", totalItems);
+    cancelBtn();
 }
 
-function checkOrder(){
-    if( +localStorage.getItem("totalPrice") == totalPrice && +localStorage.getItem("totalItems") == totalItems){
-        return false;
+function cancelBtn(){
+    var doc = document.getElementById('orderBtn');
+    var cancelBtn=document.createElement('button');
+    cancelBtn.classList="btn btn-danger cancel dummy";
+    cancelBtn.textContent= "Cancel";
+    doc.append(cancelBtn);
+    cancelBtn.addEventListener("click", () => {
+        cancelOrder();
+        cancelBtn.remove();
+    });
+}
+function buyBtn(){
+    var doc = document.getElementById('orderBtn');
+    var buyBtn=document.createElement('button');
+    buyBtn.classList="btn btn-primary buy dummy";
+    buyBtn.textContent= "Buy";
+    doc.append(buyBtn);
+    buyBtn.addEventListener("click", () => {
+        buyOrder();
+        buyBtn.remove();
+    });  
+}
+
+function cancelOrder(){
+    localStorage.clear();
+    localStorage.setItem("proccess", "Cancel");     
+    localStorage.setItem("totalPrice", totalPrice);
+    localStorage.setItem("totalItems", totalItems); 
+    buyBtn();
+}
+
+
+function refreshTotal(totalItems, totalPrice){
+    let totitms = document.querySelector('.totitems');
+    let itmspri = document.querySelector('.itemspri');
+    counter.textContent = totalItems;
+    totitms.textContent ="Number of Items: " + totalItems;
+    itmspri.textContent = totalPrice;
+    document.querySelector('.dummy').remove();
+    if (  (localStorage.getItem("proccess") == "Buy") && 
+        ( (+localStorage.getItem("totalPrice") == totalPrice)
+         && (+localStorage.getItem("totalItems") == totalItems) ) ) {
+        cancelBtn(); 
     }else{
-        return true;
+        buyBtn();
     }
 }
 
-var t = setTimeout("totalTemplate()",1200);
+var t = setTimeout("totalTemplate()",1500);
 
 function itemsTemplate(id, imageSrc, title, price){
     var cartRow = document.createElement('div');
@@ -136,7 +177,6 @@ cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('chang
 
 function totalTemplate(){
 
-    counter.textContent = totalItems;
     var cartRow = document.createElement('div');
     cartRow.classList.add('cart-row');
     cartRow.id = "total";
@@ -145,28 +185,17 @@ function totalTemplate(){
     if ( totalItems > 0){
         var cartRowContents = 
         `<div class="cart-item cart-column">
-            <span class="cart-item-title">Number of Items: ${totalItems}</span>
+            <span class="cart-item-title totitems">Number of Items: ${totalItems}</span>
         </div>
-        <span class="cart-price cart-column">${totalPrice}</span>
-        <div class="cart-quantity cart-column">
-        <button class="btn btn-primary buy" type="button">Buy Items</button>
+        <span class="cart-price cart-column itemspri">${totalPrice}</span>
+        <div class="cart-quantity cart-column" id="orderBtn">
+            <button class="dummy"></button>
         </div>`;
-    }else{
-        var cartRowContents = 
-        `<div class="cart-item cart-column">
-            <span class="cart-item-title">Number of Items: No items</span>
-        </div>
-        <span class="cart-price cart-column"> 0</span>
-        <div class="cart-quantity cart-column">
-        <button class="btn btn-primary buy" type="button" disabled>Buy Items</button>
-        </div>`;    
-    }
-    
+
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
-    if(checkOrder()){
-        cartRow.getElementsByClassName('btn-primary')[0].addEventListener('click', () => buyItems());
-    }else{
-        cartRow.getElementsByClassName('btn-primary')[0].setAttribute("disabled", true);
-    }
+
+    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
 }
+}
+
