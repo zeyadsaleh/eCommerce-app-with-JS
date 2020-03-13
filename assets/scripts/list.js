@@ -117,7 +117,7 @@ function buyBtn(){
 
 function cancelOrder(){
     localStorage.clear();
-    localStorage.setItem("proccess", "Cancel");     
+    localStorage.setItem("proccess", "Canceled");     
     localStorage.setItem("totalPrice", totalPrice);
     localStorage.setItem("totalItems", totalItems); 
     buyBtn();
@@ -187,7 +187,7 @@ function totalTemplate(){
         </div>
         <span class="cart-price cart-column itemspri">${totalPrice}</span>
         <div class="cart-quantity cart-column" id="orderBtn">
-            <button class="btn btn-primary buy" id="buyBtn">Buy</button>
+            <button class="btn btn-primary buy mr-4" id="buyBtn">Buy</button>
             <button class="btn btn-danger cancel" id="cancelBtn">Cancel</button>
         </div>`;
 

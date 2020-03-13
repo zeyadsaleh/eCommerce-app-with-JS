@@ -2,7 +2,7 @@ const DATABASE_NAME = 'History';
 const BOOKS_STORE_NAME = 'history';
 const buyButton = document.querySelector('#buyBtn');
 const cancleButton = document.querySelector('#cancelBtn');
-console.log(document.querySelector('#cancelBtn'));
+//console.log(document.querySelector('#cancelBtn'));
 
 
 let dataBase;
@@ -70,29 +70,26 @@ buyButton.addEventListener('click', (ev) => {
         historyDb.add({
             items: localStorage.getItem("totalItems"),
             total: localStorage.getItem("totalPrice"),
-            status: localStorage.getItem("proccess"),
+            status: "Proccessing",
             date: date
         });
     }
 });
 
 cancleButton.addEventListener('click', (ev) => {
-    //console.log(db);
-    console.log("btn");
-    
+    //console.log(db);    
     if (dataBase instanceof IDBDatabase) {
         const tx = dataBase.transaction(BOOKS_STORE_NAME, 'readwrite');
         const historyDb = tx.objectStore(BOOKS_STORE_NAME);
         var date = new Date();
         date = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
         //console.log(date);
-
-        historyDb.add({
-            items: localStorage.getItem("totalItems"),
-            total: localStorage.getItem("totalPrice"),
-            status: localStorage.getItem("proccess"),
-            date: date
-        });
+            historyDb.add({
+                items: localStorage.getItem("totalItems"),
+                total: localStorage.getItem("totalPrice"),
+                status: "Cancled",
+                date: date
+            });       
     }
 });
 
