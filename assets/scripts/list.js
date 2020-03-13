@@ -41,7 +41,6 @@ function quantityChanged(event) {
         input.value = 1;
         return 0;
     }
-    var totalBar = document.getElementById('total');
     let idn = (input.id).replace("Q","");
     if (db instanceof IDBDatabase) {
         const tx = db.transaction(STORE_NAME, 'readwrite');
@@ -71,7 +70,6 @@ function quantityChanged(event) {
 function removeCartItem(event) {
     localStorage.clear();
     var buttonClicked = event.target;
-    var totalBar = document.getElementById('total');
     let idn = (buttonClicked.id).replace("B","");
     if (db instanceof IDBDatabase) {
         const tx = db.transaction(STORE_NAME, 'readwrite');
@@ -99,28 +97,22 @@ function buyOrder(){
 }
 
 function cancelBtn(){
-    var doc = document.getElementById('orderBtn');
-    var cancelBtn=document.createElement('button');
-    cancelBtn.classList="btn btn-danger cancel dummy";
-    cancelBtn.textContent= "Cancel";
-    cancelBtn.id = "cancelBtn";
-    doc.append(cancelBtn);
+    let buyBtn = document.querySelector('#buyBtn');
+    let cancelBtn = document.querySelector('#cancelBtn');
+    buyBtn.setAttribute("disabled", true);
+    cancelBtn.disabled = false;
     cancelBtn.addEventListener("click", () => {
         cancelOrder();
-        cancelBtn.remove();
-    });
+        cancelBtn.setAttribute("disabled", true);}); 
 }
 function buyBtn(){
-    var doc = document.getElementById('orderBtn');
-    var buyBtn=document.createElement('button');
-    buyBtn.classList="btn btn-primary buy dummy";
-    buyBtn.textContent= "Buy";
-    buyBtn.id = "buyBtn";
-    doc.append(buyBtn);
+    let cancelBtn = document.querySelector('#cancelBtn');
+    let buyBtn = document.querySelector('#buyBtn');
+    cancelBtn.setAttribute("disabled", true);
+    buyBtn.disabled = false;
     buyBtn.addEventListener("click", () => {
         buyOrder();
-        buyBtn.remove();
-    });  
+        buyBtn.setAttribute("disabled", true);}); 
 }
 
 function cancelOrder(){
@@ -133,18 +125,22 @@ function cancelOrder(){
 
 
 function refreshTotal(totalItems, totalPrice){
-    let totitms = document.querySelector('.totitems');
-    let itmspri = document.querySelector('.itemspri');
-    counter.textContent = totalItems;
-    totitms.textContent ="Number of Items: " + totalItems;
-    itmspri.textContent = totalPrice;
-    document.querySelector('.dummy').remove();
-    if (  (localStorage.getItem("proccess") == "Proccessing") && 
-        ( (+localStorage.getItem("totalPrice") == totalPrice)
-         && (+localStorage.getItem("totalItems") == totalItems) ) ) {
-        cancelBtn(); 
+    if ( totalItems > 0){
+        let totitms = document.querySelector('.totitems');
+        let itmspri = document.querySelector('.itemspri');
+        counter.textContent = totalItems;
+        totitms.textContent ="Number of Items: " + totalItems;
+        itmspri.textContent = totalPrice;
+        if (  (localStorage.getItem("proccess") == "Proccessing") && 
+            ( (+localStorage.getItem("totalPrice") == totalPrice)
+             && (+localStorage.getItem("totalItems") == totalItems) ) ) {
+            cancelBtn(); 
+        }else{
+            buyBtn();
+        }
     }else{
-        buyBtn();
+        counter.textContent = totalItems;
+        emptyTemplate();
     }
 }
 
@@ -191,13 +187,26 @@ function totalTemplate(){
         </div>
         <span class="cart-price cart-column itemspri">${totalPrice}</span>
         <div class="cart-quantity cart-column" id="orderBtn">
-            <button class="dummy"></button>
+            <button class="btn btn-primary buy" id="buyBtn">Buy</button>
+            <button class="btn btn-danger cancel" id="cancelBtn">Cancel</button>
         </div>`;
 
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
 
     t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
+}else{
+    emptyTemplate();
 }
 }
 
+function emptyTemplate(){
+    var cartRow = document.createElement('div');
+    cartRow.classList.add('cart-row');
+    cartRow.id = "total";
+    document.querySelector('.items').remove();
+    var cartRowContents = 
+    `<img src="assets/img/oops_cart.png" alt="No items" class="center"/>`;
+    cartRow.innerHTML = cartRowContents;
+    document.querySelector('.cartitems').append(cartRow);
+}

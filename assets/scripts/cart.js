@@ -3,8 +3,7 @@ const DB_V = 1;
 const STORE_NAME = 'souq';
 let cartBtn = document.querySelector('#cart');
 let counter = document.querySelector('#count');
-// let cartBox = document.querySelector('#myDropdown');
-// let delBtn = document.createElement("button");
+let prodQuantity = 1;
 let count = 0;
 let db,title,prodId,price,imageUrl,index;
 
@@ -63,6 +62,9 @@ function countItems(ths){
     
   }else if (String(window.location.href).includes("Product_details.html")){
 
+    prodQuantity = document.querySelector('#prodQ').value;
+    console.log(prodQuantity);
+
     title = document.querySelector('#Name').textContent;
     prodId = productId;
     price = document.querySelector('#Price').textContent;
@@ -70,14 +72,16 @@ function countItems(ths){
     imageUrl = document.querySelector('.image').src;
   }
 
+    Array.from({length:+prodQuantity},()=> {
     let check = addToDB(title, imageUrl, prodId, +price[0]);
 
     if(check){
-    count ++;
-    counter.textContent = count;}
+      count ++;
+      counter.textContent = count;}
     else{
       alert("Can not added to Cart");
     }
+  });
 }
 
 
@@ -103,5 +107,3 @@ let addBtn = document.querySelectorAll('.shop-item-button');
 addBtn.forEach((v,i)=> {
 addBtn[i].addEventListener("click", countItems);
 });
-
-
