@@ -92,7 +92,7 @@ function removeCartItem(event) {
 
 function buyOrder(){
     localStorage.clear();
-    localStorage.setItem("proccess", "Buy");     
+    localStorage.setItem("proccess", "Proccessing");     
     localStorage.setItem("totalPrice", totalPrice);
     localStorage.setItem("totalItems", totalItems);
     cancelBtn();
@@ -103,6 +103,7 @@ function cancelBtn(){
     var cancelBtn=document.createElement('button');
     cancelBtn.classList="btn btn-danger cancel dummy";
     cancelBtn.textContent= "Cancel";
+    cancelBtn.id = "cancelBtn";
     doc.append(cancelBtn);
     cancelBtn.addEventListener("click", () => {
         cancelOrder();
@@ -114,6 +115,7 @@ function buyBtn(){
     var buyBtn=document.createElement('button');
     buyBtn.classList="btn btn-primary buy dummy";
     buyBtn.textContent= "Buy";
+    buyBtn.id = "buyBtn";
     doc.append(buyBtn);
     buyBtn.addEventListener("click", () => {
         buyOrder();
@@ -137,7 +139,7 @@ function refreshTotal(totalItems, totalPrice){
     totitms.textContent ="Number of Items: " + totalItems;
     itmspri.textContent = totalPrice;
     document.querySelector('.dummy').remove();
-    if (  (localStorage.getItem("proccess") == "Buy") && 
+    if (  (localStorage.getItem("proccess") == "Proccessing") && 
         ( (+localStorage.getItem("totalPrice") == totalPrice)
          && (+localStorage.getItem("totalItems") == totalItems) ) ) {
         cancelBtn(); 
