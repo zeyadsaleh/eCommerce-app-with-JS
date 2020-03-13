@@ -38,7 +38,7 @@ function addItemToCart(id, title, price, imageSrc) {
         <span class="cart-price cart-column" id="P${id}">${price}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" id="Q${id}" type="number" value="1">
-            <button class="btn btn-danger" type="button">REMOVE</button>
+            <button class="btn btn-danger" type="button" >REMOVE</button>
         </div>`
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
@@ -59,7 +59,7 @@ var cartRowContents =
 </div>
 <span class="cart-price cart-column">${totalPrice}</span>
 <div class="cart-quantity cart-column">
-<button class="btn btn-primary" type="button">Buy Items</button>
+<button class="btn btn-primary" type="button" id="buyBtn">Buy Items</button>
 </div>`
 
 cartRow.innerHTML = cartRowContents;
