@@ -69,6 +69,10 @@ function reqListener() {
     add_button.id =`AddCart${i}`;
     document.getElementById(`Inextend${i}`).appendChild(add_button);
   }
+  
+  if ( i == data["data"].length){
+    loadCart();
+  }
 
   //pagination
   const TotalPage = data["total_pages"];

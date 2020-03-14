@@ -29,7 +29,7 @@ function openDB() {
     dbReq.onsuccess = (ev) => {
         console.log('onsuccess');
         dataBase = ev.target.result;
-        if (dataBase instanceof IDBDatabase) {
+        if (dataBase instanceof IDBDatabase && String(window.location.href).includes("history.html")) {
             const tx = dataBase.transaction(BOOKS_STORE_NAME, 'readwrite');
             const historyDb = tx.objectStore(BOOKS_STORE_NAME);
             historyDb.getAll().onsuccess = (ev) => {
@@ -47,16 +47,13 @@ function openDB() {
                     tr.appendChild(date);
                     tr.appendChild(status);
                     tr.appendChild(total);
-                    document.querySelector('#tbody').appendChild(tr);
-    
-                    //console.log(document.querySelector('#tr'));
-    
-                }
+                    document.querySelector('#tbody').appendChild(tr);}
             }
         }
     }
 
 }
+if(String(window.location.href).includes("cart.html")){
 
 buyButton.addEventListener('click', (ev) => {
     //console.log(db);
@@ -93,5 +90,5 @@ cancleButton.addEventListener('click', (ev) => {
     }
 });
 
-
+}
 

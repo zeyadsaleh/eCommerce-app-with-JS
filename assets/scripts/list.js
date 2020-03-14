@@ -1,6 +1,7 @@
 let totalItems = 0;
 let totalPrice = 0;
 let cout = [];
+var t = setTimeout("totalTemplate()",250);
 
 function addItemToCart(id, title, price, imageSrc) {
     let IdQuantity,IdPrice;
@@ -49,10 +50,14 @@ function quantityChanged(event) {
             for (let ele of (event.target.result)){
                   if ( ele.itemId == idn){
                     let idx = Math.abs(+input.value-cout[idn]);
-                    if ( cout[idn] < +input.value){
+                    if ( cout[idn] < +input.value || input.value == 2){
                             cartItems(ele.price, true);
                             addToDB(ele.itemName, ele.itemImage, ele.itemId, ele.price);
-                            cout[idn] ++;
+                            if (cout[idn] != undefined){
+                                cout[idn] ++;
+                            }else{
+                                cout[idn] = input.value;
+                            }
                         }else{
                             cartItems(ele.price, false);
                             booksStore.delete(parseInt(ele.id));
@@ -64,7 +69,7 @@ function quantityChanged(event) {
             }
         }
     }
-    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
+    t = setTimeout("refreshTotal(totalItems, totalPrice)",60);
 }
 
 function removeCartItem(event) {
@@ -83,9 +88,8 @@ function removeCartItem(event) {
               }
     }
 }
-    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
+    t = setTimeout("refreshTotal(totalItems, totalPrice)",60);
     buttonClicked.parentElement.parentElement.remove();
-    // refreshTotal(totalItems, totalPrice);
 }
 
 function buyOrder(){
@@ -144,8 +148,6 @@ function refreshTotal(totalItems, totalPrice){
     }
 }
 
-var t = setTimeout("totalTemplate()",1500);
-
 function itemsTemplate(id, imageSrc, title, price){
     var cartRow = document.createElement('div');
     cartRow.classList.add('cart-row');
@@ -163,24 +165,24 @@ function itemsTemplate(id, imageSrc, title, price){
         <input class="cart-quantity-input" id="Q${id}" type="number" value="1">
         <button class="btn btn-danger" id="B${id}" type="button">REMOVE</button>
     </div>`
-cartRow.innerHTML = cartRowContents;
-cartItems.append(cartRow);
-let rmBtn = cartRow.querySelectorAll('.btn-danger');
-rmBtn.forEach((v,i)=> {
-    rmBtn[i].addEventListener('click', removeCartItem);
-});
-cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
+    cartRow.innerHTML = cartRowContents;
+    cartItems.append(cartRow);
+    let rmBtn = cartRow.querySelectorAll('.btn-danger');
+    rmBtn.forEach((v,i)=> {
+        rmBtn[i].addEventListener('click', removeCartItem);
+    });
+    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
 
 }
 
 function totalTemplate(){
 
-    var cartRow = document.createElement('div');
-    cartRow.classList.add('cart-row');
-    cartRow.id = "total";
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-
     if ( totalItems > 0){
+        var cartRow = document.createElement('div');
+        cartRow.classList.add('cart-row');
+        cartRow.id = "total";
+        var cartItems = document.getElementsByClassName('cart-items')[0];
+
         var cartRowContents = 
         `<div class="cart-item cart-column">
             <span class="cart-item-title totitems">Number of Items: ${totalItems}</span>
@@ -193,20 +195,21 @@ function totalTemplate(){
 
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
-
-    t = setTimeout("refreshTotal(totalItems, totalPrice)",100);
+    
+    loadHistory();
+    refreshTotal(totalItems, totalPrice);
 }else{
     emptyTemplate();
 }
 }
 
 function emptyTemplate(){
-    var cartRow = document.createElement('div');
-    cartRow.classList.add('cart-row');
-    cartRow.id = "total";
-    document.querySelector('.items').remove();
-    var cartRowContents = 
-    `<img src="assets/img/oops_cart.png" alt="No items" class="center"/>`;
-    cartRow.innerHTML = cartRowContents;
-    document.querySelector('.cartitems').append(cartRow);
+        var cartRow = document.createElement('div');
+        cartRow.classList.add('cart-row');
+        cartRow.id = "total";
+        document.querySelector('.items').remove();
+        var cartRowContents = 
+        `<img src="assets/img/oops_cart.png" alt="No items" class="center"/>`;
+        cartRow.innerHTML = cartRowContents;
+        document.querySelector('.cartitems').append(cartRow);
 }
