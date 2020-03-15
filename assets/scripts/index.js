@@ -10,18 +10,29 @@ function reqListener() {
    //product-grid__wrapper
    const productGrid=document.createElement('div');
    productGrid.classList="product-grid__product-wrapper";
-   productGrid.id=`productGrid${i}`;
+   productGrid.id=`${data["data"][i]["ProductId"]}`;
    document.getElementById("product-grid").appendChild(productGrid);
    //product-grid__product
    const productGrid__product=document.createElement('div');
    productGrid__product.classList="product-grid__product wow bounceInUp";
    productGrid__product.id=`productgrid__product${i}`;
-   document.getElementById(`productGrid${i}`).appendChild(productGrid__product);
+   document.getElementById(`${data["data"][i]["ProductId"]}`).appendChild(productGrid__product);
+
    //product-grid__img-wrapper
    const productGrid__img=document.createElement('div');
-     productGrid__img.classList="product-grid__img-wrapper";
+  productGrid__img.classList="product-grid__img-wrapper";
    productGrid__img.id=`productImg${i}`;
    document.getElementById(`productgrid__product${i}`).appendChild(productGrid__img);
+  //add button
+  const btncontainer = document.createElement('div');
+  btncontainer.id = `Cart${i}`
+  const add_button=document.createElement('button');
+  add_button.classList="product-grid__btn product-grid__add-to-cart shop-item-button";
+  add_button.innerText="Add To Cart";
+  add_button.id =`AddCart${i}`;
+  document.getElementById(`productgrid__product${i}`).appendChild(btncontainer);
+  document.getElementById(`Cart${i}`).appendChild(add_button);
+
    //link ->`Product_details.html?id=${data["data"][i]["ProductId"]}`
    const productLink =document.createElement('a');
    productLink.id=`link${i}`
@@ -31,6 +42,7 @@ function reqListener() {
    const productImg=document.createElement('img');
    productImg.src=data["data"][i]["ProductPicUrl"];
    productImg.classList="product-grid__img";
+   productImg.id=`img${i}`;
    document.getElementById(`link${i}`).appendChild(productImg);
    //link
    const productLink2 =document.createElement('a');
@@ -41,12 +53,14 @@ function reqListener() {
    const productTitle=document.createElement('span');
    productTitle.innerText=data["data"][i]["Name"];
    productTitle.classList="product-grid__title";
+   productTitle.id=`title${i}`;
    document.getElementById(`link2${i}`).appendChild(productTitle);
    //product-grid__price
    const productGrid__price=document.createElement('span');
    productGrid__price.innerText=data["data"][i]["Price"];
    productGrid__price.classList="product-grid__price";
-   document.getElementById(`productgrid__product${i}`).appendChild(productGrid__price);
+   productGrid__price.id=`price${i}`;
+   document.getElementById(`link2${i}`).appendChild(productGrid__price);
    //product-grid__extend-wrapper
    const productGrid__extend=document.createElement('div');
    productGrid__extend.classList="product-grid__extend-wrapper";
@@ -62,12 +76,7 @@ function reqListener() {
    productGrid__description.classList="product-grid__description";
    productGrid__description.innerText=data["data"][i]["Description"];
    document.getElementById(`Inextend${i}`).appendChild(productGrid__description);
-    //add button
-    const add_button=document.createElement('button');
-    add_button.classList="product-grid__btn product-grid__add-to-cart shop-item-button";
-    add_button.innerText="Add To Cart";
-    add_button.id =`AddCart${i}`;
-    document.getElementById(`Inextend${i}`).appendChild(add_button);
+
   }
   
   if ( i == data["data"].length){
@@ -84,11 +93,8 @@ function reqListener() {
     //pagination a
     const PaginationLink = document.createElement('a');
     PaginationLink.href = "?page=" + (i + 1);
-    //PaginationLink.classList="active"
     PaginationLink.id = `pag${i}`
     if (myParam == (i + 1)) {
-
-
       PaginationLink.classList = "active";
     }
 
@@ -96,6 +102,8 @@ function reqListener() {
     document.getElementById(`page${i}`).appendChild(PaginationLink)
     //title of link 
     const PaginationText = document.createElement('p');
+    if(myParam == (i+1)) {PaginationText.classList = "text-light";}
+    else{PaginationText.classList = "text-dark"};
     PaginationText.innerText = `${i + 1}`;
     document.getElementById(`pag${i}`).appendChild(PaginationText)
   }

@@ -34,7 +34,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #cfcfcf;
 }
 
 p {
@@ -42,7 +42,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #cfcfcf;
 }
 
 a, a:hover, a:focus {
@@ -111,7 +111,7 @@ ul ul a {
   /* [3] Finally, transforming the image when container gets hovered */
   .img-hover-zoom:hover img {
     transform: scale(1.5);
-   /* filter: grayscale(0);*/
+     /* filter: grayscale(0);*/
   }
    /* Pagination links */
 .pagination a {
@@ -124,7 +124,7 @@ ul ul a {
   
   /* Style the active/current link */
   .pagination a.active {
-    background-color: dodgerblue;
+    background-color: rgb(32, 32, 32);
     color: white;
   }
   
@@ -289,7 +289,6 @@ ul ul a {
   }
   .product-grid__title {
     margin-top: .875rem;
-    display: block;
     font-size: 1.125em;
     color: #222;
     height: 3em;
@@ -298,7 +297,6 @@ ul ul a {
   }
   .product-grid__title:after {
     content: "";
-    display: block;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -308,6 +306,8 @@ ul ul a {
   }
   .product-grid__price {
     color: #8DC6EB;
+    text-align: left;
+    margin-left: 70px;
     font-weight: bold;
     letter-spacing: .4px;
   }

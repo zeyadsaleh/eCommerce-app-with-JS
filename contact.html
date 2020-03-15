@@ -11,40 +11,54 @@
 </head>
 
 <body>
-    <!--Navbar-->
-    <div class="fixed-top">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <a class="navbar-brand" href="index.html">ECommerce Website</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <nav class="navbar navbar-expand-lg text-light mb-4 bg-dark fixed-top">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-white " href="index.html">Home <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="contact.html">Contact Us</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="history.html">History</a>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0 text-white">
-                    <label class="text-white mr-2">Search</label>
-                    <input class="form-control mr-sl-2 bg-secondary  text-white" type="search" placeholder="Search.."
-                        aria-label="Search">
-                </form>
-            </div>
-        </nav>
+    <!-- Navbar brand -->
+    <a class="navbar-brand text-light" href="index.html">ECommerce Website</a>
+  
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+        class="navbar-toggler-icon"></span></button>
+  
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link text-light" href="index.html">Home <span
+            class="sr-only">(current)</span></a>
+       </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="about.html">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="contact.html">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="cart.html">Cart</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link text-white" href="history.html">History</a>
+        </li>
+  
+        <!-- Dropdown -->
+
+  
+      </ul>
+      <!-- Links -->
+  
+      <!-- Search form -->
+      <form class="form-inline my-2 my-lg-0 text-white" id="form_search">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchBtn">
+      </form>
     </div>
-    <!--End Navbar-->
+    <!-- Collapsible content -->
+  
+  </nav>
+  </nav>
     <div class="container contact-form">
         <div class="contact-image">
             <img src="assets/img/rocket.png" alt="rocket_contact" />
@@ -80,36 +94,26 @@
         </form>
     </div>
 
-    <div class="dropdown" id="cartBox">
-        <a class="nav-link text-dark " href="cart.html">    
-        <b><button id="cart" class="float dropbtn">
-            <i class="fas fa-cart-plus"></i>
-            Cart(<span id="count">0</span>)
-        </button></b>
-        </a>
-    </div>
-
-    <footer class="container-fluid  text-dark text-md-left text-center bg-secondary">
+    <footer class="container-fluid  text-light text-md-left text-center bg-dark">
         <div class="row py-5 px-5 justify-content-center">
-          <div class="col col-md-3">
-            <h5 class="mb-3 font-weight-bold">About Website</h5>
+          <div class="col col-md-4 text-center">
+            <h4 class="mb-5 font-weight-bold">About Website</h4>
             <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
           </div>
-          <div class="col col-md-3">
-            <h5 class="mb-3 font-weight-bold">Contact Info</h5>
-            <p class="text-white">Adress:<br>34 Street name, cityn name here, United State</br></p>
-            <p class="py-1 text-white">Telephone: <br>+124249290</br></p>
-            <p class="text-white"> Email:<br>info@yourdomain.com</br></p>
+          <div class="col col-md-4 text-center">
+            <h4 class="mb-5 font-weight-bold">Contact Info</h4>
+            <p class="text-white"><b>Address </b> | 34 Street, Alexandria, Egypt</p>
+            <p class="text-white"><b>Telephone </b> | +124249290</p>
+            <p class="text-white"><b>Email </b> | info@yourdomain.com</p>
           </div>
-          <div class="col col-md-3">
-            <h5 class="mb-3 font-weight-bold">Qiuck Links</h5>
+          <div class="col col-md-4 text-center">
+            <h4 class="mb-5 font-weight-bold">Qiuck Links</h4>
             <a class="text-white" href="about.html">About Us</a><br></br>
             <a class="text-white" href="contact.html">Contact Us</a><br></br>
             <a class="text-white" href="history.html">History</a>
           </div>
-          <div class="footer-copyright text-center mb-4 mt-5 text-white" style="font-size: 12px;">Copyright ©2019 All Rights
-            Reserved | This Website is made with love by
-            <a href="#">OS_40</a>
+          <div class="mt-5 text-white" style="font-size: 12px;">Copyright ©2019 All Rights
+            Reserved | This Website is made with love by<a href="#">OS_40</a>
           </div>
         </div>
       </footer>

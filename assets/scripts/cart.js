@@ -3,8 +3,10 @@ const DB_V = 1;
 const STORE_NAME = 'souq';
 let cartBtn = document.querySelector('#cart');
 let counter = document.querySelector('#count');
+let cost = document.querySelector('#cost');
 let prodQuantity = 1;
 let count = 0;
+let totCost = 0;
 let db,title,prodId,price,imageUrl,index;
 
 if ('indexedDB' in window) {
@@ -42,7 +44,9 @@ function openDB() {
         (event.target.result).forEach((val) => {
           if(String(window.location.href).includes("cart.html")){
           addItemToCart(val.itemId, val.itemName, val.price, val.itemImage);}
+          totCost += val.price;
           count ++;
+          cost.textContent = totCost;
           counter.textContent = count;
         });
       }
@@ -52,30 +56,34 @@ function openDB() {
 // count items of cart
 function countItems(ths){
 
-  if(String(window.location.href).includes("index.html")){
+  if(String(window.location.href).includes("Product_details.html")){
 
-    index = (Number((ths.path[0].id).slice(7,8)));
-    title = data["data"][index]["Name"];
-    prodId = data["data"][index]["ProductId"];
-    price = [ data["data"][index]["Price"] , data["data"][index]["CurrencyCode"]];
-    imageUrl = data["data"][index]["ProductPicUrl"];
-    
-  }else if (String(window.location.href).includes("Product_details.html")){
-
+    pulse(true);
+    var t = setTimeout("pulse(false);",800);
     prodQuantity = document.querySelector('#prodQ').value;
-    console.log(prodQuantity);
-
     title = document.querySelector('#Name').textContent;
     prodId = productId;
-    price = document.querySelector('#Price').textContent;
-    price = price.split(" ");
+    price = document.querySelector('#Price').textContent.split(" ")[0];
     imageUrl = document.querySelector('.image').src;
+    
+  }else{
+
+    pulse(true);
+    var t = setTimeout("pulse(false);",800);
+    index = (Number((ths.path[0].id).slice(7,8)));
+    title = document.querySelector(`#title${index}`).textContent;
+    prodId = document.querySelectorAll('.product-grid__product-wrapper')[index].id;
+    price = +document.querySelector(`#price${index}`).textContent;
+    imageUrl = document.querySelector(`#img${index}`).src;;
+
   }
 
     Array.from({length:+prodQuantity},()=> {
-    let check = addToDB(title, imageUrl, prodId, +price[0]);
+    let check = addToDB(title, imageUrl, prodId, +price);
 
     if(check){
+      totCost += +price;
+      cost.textContent = totCost;
       count ++;
       counter.textContent = count;}
     else{
@@ -107,3 +115,14 @@ let addBtn = document.querySelectorAll('.shop-item-button');
 addBtn.forEach((v,i)=> {
 addBtn[i].addEventListener("click", countItems);
 });
+
+function pulse(pulse){
+  let fltbtn = document.querySelector('#floating-button');
+
+  if(pulse){
+    fltbtn.classList.add ("element");}
+  else{
+    fltbtn.classList.remove('element');
+
+  }
+}

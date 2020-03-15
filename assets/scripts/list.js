@@ -1,7 +1,7 @@
 let totalItems = 0;
 let totalPrice = 0;
 let cout = [];
-var t = setTimeout("totalTemplate()",250);
+var t = setTimeout("totalTemplate()",400);
 
 function addItemToCart(id, title, price, imageSrc) {
     let IdQuantity,IdPrice;
@@ -133,6 +133,7 @@ function refreshTotal(totalItems, totalPrice){
         let totitms = document.querySelector('.totitems');
         let itmspri = document.querySelector('.itemspri');
         counter.textContent = totalItems;
+        cost.textContent = totalPrice;
         totitms.textContent ="Number of Items: " + totalItems;
         itmspri.textContent = totalPrice;
         if (  (localStorage.getItem("proccess") == "Proccessing") && 
@@ -144,6 +145,7 @@ function refreshTotal(totalItems, totalPrice){
         }
     }else{
         counter.textContent = totalItems;
+        cost.textContent = totalPrice;
         emptyTemplate();
     }
 }
@@ -177,11 +179,11 @@ function itemsTemplate(id, imageSrc, title, price){
 
 function totalTemplate(){
 
-    if ( totalItems > 0){
+if ( totalItems > 0){
         var cartRow = document.createElement('div');
         cartRow.classList.add('cart-row');
         cartRow.id = "total";
-        var cartItems = document.getElementsByClassName('cart-items')[0];
+        var cartItems = document.getElementById('totalcount');
 
         var cartRowContents = 
         `<div class="cart-item cart-column">
@@ -205,11 +207,11 @@ function totalTemplate(){
 
 function emptyTemplate(){
         var cartRow = document.createElement('div');
-        cartRow.classList.add('cart-row');
         cartRow.id = "total";
         document.querySelector('.items').remove();
+        document.querySelector('#totalcount').remove();
         var cartRowContents = 
         `<img src="assets/img/oops_cart.png" alt="No items" class="center"/>`;
         cartRow.innerHTML = cartRowContents;
-        document.querySelector('.cartitems').append(cartRow);
+        document.querySelector('.sizing').append(cartRow);
 }
